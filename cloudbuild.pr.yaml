@@ -1,0 +1,39 @@
+steps:
+# Step:0 = Decrypt appsettings
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    chmod +x ./scripts/pr-service-name.sh \
+    && ./scripts/pr-service-name.sh ${_PROJECT_NAME} $_PR_NUMBER
+  id: 'decrypt appsettings'
+
+#./scripts/decrypt.sh dev \ &&   <-- removed from decrypt because i dont need it yet
+
+# Step:2= Build Docker image
+- name: 'docker'
+  id: 'BuildImage'
+  args: ['build', '--no-cache', '-t', 'gcr.io/$PROJECT_ID/${_PROJECT_NAME}:$_PR_NUMBER', '-f', '.docker/Dockerfile', '.']
+
+# Step:3 = Store image
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'StoreImage'
+  args: ['push', 'gcr.io/$PROJECT_ID/${_PROJECT_NAME}:$_PR_NUMBER']  
+  waitFor: ['BuildImage']
+
+# Step:4 = Deploy service
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'DeployService'
+  entrypoint: 'gcloud'
+  args: ['app', 'deploy', '--image-url=gcr.io/$PROJECT_ID/${_PROJECT_NAME}:$_PR_NUMBER', '--version', '$_PR_NUMBER']
+
+#  waitFor: ['bdd-test']
+images: ['gcr.io/$PROJECT_ID/${_PROJECT_NAME}']
+
+# Variables from GCP trigger
+substitutions:
+  _PROJECT_NAME: ''
+
+#Timeout
+timeout: 1200s
