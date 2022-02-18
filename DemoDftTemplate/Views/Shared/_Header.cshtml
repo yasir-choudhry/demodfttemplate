@@ -1,0 +1,16 @@
+﻿<header class="govuk-header " role="banner" data-module="govuk-header">
+    <div class="govuk-header__container app-width-container">
+        <div class="govuk-header__logo">
+            <span class="govuk-header__logotype">
+                <img src="~/images/DfT_White_Footer_Logo.png" width="155" alt="Digital Service logo" />
+            </span>
+        </div>
+        <div class="govuk-header__content">
+            <a href="#" class="govuk-header__link govuk-header__link--service-name">
+                @Configuration["ApplicationTitle"]
+            </a>
+            <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+            @await Component.InvokeAsync("NavBar")
+        </div>
+    </div>
+</header>

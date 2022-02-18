@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Rename</title>
+    <link href="~/css/govuk-frontend-3.10.2.min.css" rel="stylesheet" />
+    <link href="~/css/dft-frontend.css" rel="stylesheet" asp-append-version="true"/>
+</head>
+
+<body class="govuk-template__body app-body-class" data-test="My value" data-other="report:details">
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+    </script>
+
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    @await Html.PartialAsync("_Header")
+
+    <div class="dft-width-container app-width-container">
+        @await Html.PartialAsync("_PhaseBanner")
+
+        <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    @await Html.PartialAsync("_Footer")
+
+    <script src="~/js/govuk-frontend-3.10.2.min.js"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
+</body>
+
+</html>

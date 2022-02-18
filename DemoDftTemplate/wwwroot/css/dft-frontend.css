@@ -1,0 +1,57 @@
+﻿@import url('https://rsms.me/inter/inter.css');
+
+html body * {
+    font-family: 'Inter', Arial, sans-serif !important;
+}
+
+@supports (font-variation-settings: normal) {
+    html body * {
+        font-family: 'Inter var', Arial, sans-serif, sans-serif !important;
+    }
+}
+
+/*page container width*/
+.dft-width-container {
+    max-width: 90%;
+    margin: 0 15px;
+}
+
+@supports (margin: max(calc(0px))) {
+    .dft-width-container {
+        margin-right: max(15px, calc(15px + env(safe-area-inset-right)));
+        margin-left: max(15px, calc(15px + env(safe-area-inset-left)));
+    }
+}
+
+@media (min-width: 40.0625em) {
+    .dft-width-container {
+        margin: 0 30px;
+    }
+
+    @supports (margin: max(calc(0px))) {
+        .dft-width-container {
+            margin-right: max(30px, calc(15px + env(safe-area-inset-right)));
+            margin-left: max(30px, calc(15px + env(safe-area-inset-left)));
+        }
+    }
+}
+
+@media (min-width: 1020px) {
+    .dft-width-container {
+        margin: 0 auto;
+    }
+
+    @supports (margin: max(calc(0px))) {
+        .dft-width-container {
+            margin: 0 auto;
+        }
+    }
+}
+
+/*footer css*/
+.dft-footer-logo {
+    float: right;
+    margin-left: 30px;
+}
+
+/*end footer css*/

@@ -1,0 +1,67 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Looks like there is a problem...</h1>
+<h2 class="text-danger">An error has occurred while trying to processing your request</h2>
+
+@if (Model.StatusCode != null)
+{
+    <h2 class="text-danger">@Model.Message</h2>
+}
+else
+{
+    <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                Report the error
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            <form asp-action="Error" method="post">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" asp-for="Details"></label>
+                    <textarea asp-for="Details" class="govuk-textarea govuk-!-width-one-quarter" rows="10" maxlength="300"></textarea>
+                </div>
+                <div hidden="hidden">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" asp-for="Message"></label>
+                        <textarea asp-for="Message" class="govuk-textarea govuk-!-width-one-quarter" rows="10" maxlength="300"></textarea>
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" asp-for="StackTrace"></label>
+                        <textarea asp-for="StackTrace" class="govuk-textarea govuk-!-width-one-quarter" rows="10" maxlength="300"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Send Error Report
+                </button>
+            </form>
+        </div>
+    </details>
+
+    <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                Error Details
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            @if (Model.ShowRequestId)
+            {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+            }
+            <p>
+                <strong>Message: </strong>@Model.Message
+            </p>
+            <span>
+                <strong>Stack Trace: </strong><br />@Html.Raw(Model.StackTrace)
+            </span>
+        </div>
+    </details>
+}
+
