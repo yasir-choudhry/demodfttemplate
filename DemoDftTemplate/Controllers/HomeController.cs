@@ -10,6 +10,8 @@ namespace DemoDftTemplate.Controllers
 {
     // Can set on whole controller by using here or individual ones (see Contact)
     //[Authorize(Policy = "HasAdminRights")]
+    [AllowAnonymous]
+    [IgnoreAntiforgeryToken]
     public class HomeController : Controller
     {
         public IActionResult Index()
