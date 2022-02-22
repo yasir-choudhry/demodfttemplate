@@ -183,6 +183,10 @@ namespace DemoDftTemplate
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-        }
+            int i = 0;
+            while (i < 5)
+            {
+
+            }
     }
 }
