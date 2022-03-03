@@ -119,6 +119,7 @@ namespace DemoDftTemplate
         {
             //app.UseGoogleTrace();
             //loggerFactory.AddGoogle(app.ApplicationServices, Configuration.GetSection("ProjectId").ToString());
+            
             app.UseForwardedHeaders();
             app.UseXContentTypeOptions();
             app.UseReferrerPolicy(opts => opts.NoReferrer());

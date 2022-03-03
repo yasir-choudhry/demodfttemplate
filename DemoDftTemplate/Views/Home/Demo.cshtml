@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Demo service currently not available";
+    string email = "";
+    if ((ViewData.ContainsKey("EmailID")) && (ViewData["EmailID"] != null))
+    {
+        email = (ViewData["EmailID"].ToString());
+    }
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Join the mailing so we can let you know when the service is back online.</p>
+
+@{
+    if (email == "_null_")
+    {
+        @using (Html.BeginForm())
+        {
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="one-half">
+            Email address
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="Email" required name="Email" type="text">
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button" type="submit">
+            Continue
+          </button>
+
+          <a class="govuk-link" href="/">Cancel</a>
+        </div>
+        }
+    }
+    else if (email == "")
+    {
+        @using (Html.BeginForm())
+        {
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="one-half">
+            Email address
+          </label>
+          <p id="event-name-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter a valid email address
+          </p>
+          <input class="govuk-input govuk-input--error govuk-!-width-one-half" id="Email" required name="Email" type="text" value=@email>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button" type="submit">
+            Continue
+          </button>
+
+          <a class="govuk-link" href="/">Cancel</a>
+        </div>
+        }
+    }
+    else
+    {
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          You have been added to the mailing list
+        </h3>
+        <p class="govuk-body">We will contact you at <span class="govuk-notification-banner__link" color=#00703C>@email</span> when the service is live.</p>
+      </div>
+    </div>
+    <a href="/Home/Demo" class="govuk-back-link">Back</a>
+    }
+
+}

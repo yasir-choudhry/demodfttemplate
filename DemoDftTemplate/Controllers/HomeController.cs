@@ -43,6 +43,20 @@ namespace DemoDftTemplate.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Demo()
+        {
+            ViewData["EmailID"] = "_null_";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Demo(string Email)
+        {
+            ViewData["EmailID"] = Email;
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int? statusCode = null)
         {
@@ -66,6 +80,7 @@ namespace DemoDftTemplate.Controllers
                 return View(vModel);
             }
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
