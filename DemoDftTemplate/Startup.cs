@@ -112,6 +112,7 @@ namespace DemoDftTemplate
             });
 
             services.AddControllersWithViews();
+            //services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,6 +120,7 @@ namespace DemoDftTemplate
         {
             //app.UseGoogleTrace();
             //loggerFactory.AddGoogle(app.ApplicationServices, Configuration.GetSection("ProjectId").ToString());
+            
             app.UseForwardedHeaders();
             app.UseXContentTypeOptions();
             app.UseReferrerPolicy(opts => opts.NoReferrer());
@@ -176,11 +178,13 @@ namespace DemoDftTemplate
 
             app.UseRouting();
             app.UseAuthorization();
+            //app.MapRazorPages();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapRazorPages();
             });
 
         }
