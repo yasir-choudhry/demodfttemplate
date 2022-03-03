@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System;
+using System.Text.RegularExpressions;
 
 namespace DemoDftTemplate.Controllers
 {
@@ -54,6 +56,13 @@ namespace DemoDftTemplate.Controllers
         public IActionResult Demo(string Email)
         {
             ViewData["EmailID"] = Email;
+            ViewData["EmailValid"] = "False";
+            // This is incorrect and regex shoudn't actually be used for validating email addresses
+            string regexforemail = "/^\\S+@\\S+\\.\\S+$/";
+            if ((ViewData["EmailID"] != null) && (Regex.IsMatch(Email, regexforemail)))
+            {
+                ViewData["EmailValid"] = "True";
+            }
             return View();
         }
 

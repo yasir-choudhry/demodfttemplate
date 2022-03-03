@@ -32,7 +32,7 @@
         </div>
         }
     }
-    else if (email == "")
+    else if ((email == "") | (ViewData["EmailValid"].ToString() == "False"))
     {
         @using (Html.BeginForm())
         {
