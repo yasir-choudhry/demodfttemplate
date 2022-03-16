@@ -1,7 +1,0 @@
-{
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;user=root;pwd=;database=RentalVehicleSecuritySchemeDev;convertzerodatetime=True"
-  },
-  "ExtentReportPath": "C:\\projects\\VehicleRentalRegister\\VehicleRentalRegister.BDD.Test\\ExtentReport.html"
-}
