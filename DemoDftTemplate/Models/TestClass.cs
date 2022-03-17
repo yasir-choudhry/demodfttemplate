@@ -6,7 +6,7 @@
         {
             if (TestVar == true)
             {
-                return false;
+                return true;
             }
             else
             {
