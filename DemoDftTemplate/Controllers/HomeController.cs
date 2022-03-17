@@ -54,17 +54,6 @@ namespace DemoDftTemplate.Controllers
         public IActionResult Demo(string Email)
         {
             ViewData["EmailID"] = Email;
-            string conString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            using (SqlCommand cmd = new SqlCommand("SELECT * FROM Emails WHERE EmailId = '" + Email + "'"))
-            {
-                using (SqlConnection con = new SqlConnection(conString))
-                {
-                    con.Open();
-                    cmd.Connection = con;
-                    con.Close();
-                }
-            }
-            
             return View();
         }
 
