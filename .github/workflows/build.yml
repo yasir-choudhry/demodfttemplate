@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - yasir-choudhry-csrf
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
