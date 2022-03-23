@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Diagnostics;
 using System.Threading.Tasks;
+// remove after test
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+//----
 
 namespace DemoDftTemplate.Controllers
 {
@@ -50,12 +55,34 @@ namespace DemoDftTemplate.Controllers
             return View();
         }
 
+
+        // uncomment after test
+        //[HttpPost]
+        //public IActionResult Demo(string Email)
+        //{
+        //    ViewData["EmailID"] = Email;
+        //    return View();
+        //}
+
+
+        //  test injection in main branch
         [HttpPost]
         public IActionResult Demo(string Email)
         {
             ViewData["EmailID"] = Email;
+            string conString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM Emails WHERE EmailId = '" + Email + "'"))
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    cmd.Connection = con;
+                    con.Close();
+                }
+            }
             return View();
         }
+        //-----
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int? statusCode = null)
