@@ -96,7 +96,7 @@ namespace DemoDftTemplate.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Error(ErrorViewModel anError)
         {
             string Message = anError.Message;
