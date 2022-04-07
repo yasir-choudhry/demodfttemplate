@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Diagnostics;
 using System.Threading.Tasks;
+// remove after test
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+//----
 
 namespace DemoDftTemplate.Controllers
 {
@@ -49,6 +54,7 @@ namespace DemoDftTemplate.Controllers
             ViewData["EmailID"] = "_null_";
             return View();
         }
+
 
         [HttpPost]
         public IActionResult Demo(string Email)
