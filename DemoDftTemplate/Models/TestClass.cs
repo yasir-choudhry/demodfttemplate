@@ -6,11 +6,11 @@
         {
             if (TestVar == true)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
     }
