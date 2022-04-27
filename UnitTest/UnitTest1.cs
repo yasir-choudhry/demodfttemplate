@@ -17,6 +17,14 @@ namespace UnitTest
             swapresult = TestClass.TestFunction(trueorfalse);
 
             Assert.AreEqual(swapexpected, swapresult);
+
+            trueorfalse = false;
+            swapexpected = true;
+
+
+            swapresult = TestClass.TestFunction(trueorfalse);
+
+            Assert.AreEqual(swapexpected, swapresult);
         }
     }
 }
